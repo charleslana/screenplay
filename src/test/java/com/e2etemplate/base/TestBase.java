@@ -64,6 +64,7 @@ public class TestBase {
         if (!testDescription.isEmpty()) {
             logger.info("Descrição do Teste: {}", testDescription);
         }
+//        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         context = browser.newContext();
         page = context.newPage();
         page.setDefaultTimeout(defaultTimeout);

@@ -37,9 +37,10 @@ public class Action {
     }
 
     public void digitar(String selector, String text) {
+        Locator locator = buscarLocator(selector);
         try {
             logInfo("Digitando o texto '" + text + "' no seletor '" + selector + "'");
-            page.locator(selector).pressSequentially(text);
+            locator.pressSequentially(text, new Locator.PressSequentiallyOptions().setDelay(100));
             logSuccess("Texto '" + text + "' digitado com sucesso no seletor '" + selector + "'");
         } catch (Exception e) {
             logError("Erro ao digitar o texto '" + text + "' no seletor '" + selector + "'", e);
@@ -61,11 +62,11 @@ public class Action {
     public void sleep(long milliseconds) {
         try {
             logInfo("Aguardando por " + milliseconds + " milissegundos...");
-            Thread.sleep(milliseconds);
+            page.waitForTimeout(milliseconds);
             logSuccess("Espera de " + milliseconds + " milissegundos concluída.");
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             logError("Erro durante a espera de " + milliseconds + " milissegundos.", e);
-            Thread.currentThread().interrupt();
+            throw e;
         }
     }
 

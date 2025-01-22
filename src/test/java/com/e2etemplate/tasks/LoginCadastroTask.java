@@ -54,7 +54,7 @@ public class LoginCadastroTask {
     }
 
     public void digitarCep(String cep) {
-        action.preencher(loginCadastroPage.campoCep, cep);
+        action.digitar(loginCadastroPage.campoCep, cep);
         action.clicar(loginCadastroPage.campoEndereco);
         action.esperarPorRequisicao(loginCadastroPage.requisicaoCepUrl);
     }
